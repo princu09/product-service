@@ -3,6 +3,7 @@
     require '_nf-admin/_dbconnect.php';
     $sql = "SELECT * FROM `admin-login` LIMIT 1";
     $result = mysqli_query($connect , $sql);
+    $num = mysqli_num_rows($result);
 
     $sitename = array();
     $companyname = array();
@@ -12,7 +13,7 @@
     $instagram = array();
     $twitter = array();
 
-    if (!empty($result) && ($result == 0)) {
+    if ($num == 1) {
         while ($row = mysqli_fetch_assoc($result)) {
             $sitename[] = $row['site-name'];
             $companyname[] = $row['comapny-name'];
